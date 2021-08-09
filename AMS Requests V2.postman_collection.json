@@ -1,0 +1,2329 @@
+{
+	"info": {
+		"_postman_id": "9bf1aff0-62d9-42c0-885d-6ae4bf00c137",
+		"name": "AMS Requests V2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "AUTH",
+			"item": [
+				{
+					"name": "1.Add User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "998",
+									"description": "National ID",
+									"type": "text"
+								},
+								{
+									"key": "first_name",
+									"value": "ibrahim",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "ahmed ibrahim",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "01111111158",
+									"description": "ORANGE ONLY X'D ",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "student99@gmail.com",
+									"description": "university e-mail ",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"description": "NOT < | 8 | ",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "1",
+									"description": "[ 1 || 2 || 3 ] ",
+									"type": "text"
+								},
+								{
+									"key": "dep_id",
+									"value": "1",
+									"description": "OPTIONAL [ must with type = 1 ]",
+									"type": "text"
+								},
+								{
+									"key": "sec_id",
+									"value": "1",
+									"description": "OPTIONAL [must  with type = 1 ]",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/auth/add_user",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"add_user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2.Login User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let responseData=pm.response.json();\r",
+									"pm.globals.set(\"Token\", responseData.token);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "hema.1998.man@gmail.com",
+									"description": "hema.1998.man@gmail.com         3",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"description": "advisor@gmail.com                 1 ",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/auth/login",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3.Change_pass",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "password",
+									"value": "12345678",
+									"description": "enter current ",
+									"type": "text"
+								},
+								{
+									"key": "new_pass",
+									"value": "123456789",
+									"description": "enter new pass ",
+									"type": "text"
+								},
+								{
+									"key": "conifrm_new_pass",
+									"value": "123456789",
+									"description": "confirm new pass ",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/auth/change_pass",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"change_pass"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4.Reset_pass1",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "student1@gmail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/auth/sendresetpasswordemail",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"sendresetpasswordemail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5.Reset_pass2",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "token",
+									"value": "486193",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "hema.1998.man@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/auth/reset_pass",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"reset_pass"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "6.Deep_Search",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "first_name",
+									"value": "kareem",
+									"description": "Optional",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "last_name",
+									"value": "omar",
+									"description": "Optional",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "id",
+									"value": "200",
+									"description": "Optional",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "email",
+									"value": "advisor9999@gmail.com",
+									"description": "Optional",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "phone",
+									"value": "01207053244",
+									"description": "Optional",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "dep_id",
+									"value": "1",
+									"description": "Optional [MUST WITH SEC_ID]",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "sec_id",
+									"value": "1",
+									"description": "Optional [MUST WITH DEP_ID]",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "all",
+									"value": "1",
+									"description": "Optional [ to get all users = 1 ] ",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "lvl",
+									"value": "1",
+									"description": "Optional ",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "adv_id",
+									"value": "7",
+									"description": "Optional ",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/auth/deep_search",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"deep_search"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "98",
+			"item": [
+				{
+					"name": "PRIVATE [WEB]",
+					"item": [
+						{
+							"name": "12.Add Department",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "dname",
+											"value": "new geo99545885",
+											"type": "text"
+										},
+										{
+											"key": "dep_id",
+											"value": "10954545",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseURL}}/api/private/department98",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"private",
+										"department98"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "13.Add Section",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "dep_id",
+											"value": "3",
+											"type": "text"
+										},
+										{
+											"key": "Sec_id",
+											"value": "13",
+											"type": "text"
+										},
+										{
+											"key": "sec_name",
+											"value": "pure112",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseURL}}/api/private/section98",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"private",
+										"section98"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "14.Add Course",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "ccode",
+											"value": "comp4019",
+											"type": "text"
+										},
+										{
+											"key": "cname",
+											"value": "ai azx",
+											"type": "text"
+										},
+										{
+											"key": "cch",
+											"value": "3",
+											"type": "text"
+										},
+										{
+											"key": "dmidterm",
+											"value": "40",
+											"type": "text"
+										},
+										{
+											"key": "dlab",
+											"value": "20",
+											"type": "text"
+										},
+										{
+											"key": "doral",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "dclass_work",
+											"value": "60",
+											"type": "text"
+										},
+										{
+											"key": "dfinal",
+											"value": "90",
+											"type": "text"
+										},
+										{
+											"key": "dtotal",
+											"value": "150",
+											"type": "text"
+										},
+										{
+											"key": "instructor",
+											"value": "dr_ashraf",
+											"description": "instructor name ",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseURL}}/api/private/course98",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"private",
+										"course98"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "15.Add Pre_req C",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "ccode",
+											"value": "comp401",
+											"type": "text"
+										},
+										{
+											"key": "pr_ccode",
+											"value": "comp405",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseURL}}/api/private/pre_req98",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"private",
+										"pre_req98"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "16.Add Sictions Course",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "dep_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "Sec_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "ccode",
+											"value": "comp401",
+											"type": "text"
+										},
+										{
+											"key": "c_theoretical_ratio",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "c_elective",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "c_semester",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "c_lvl",
+											"value": "3",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseURL}}/api/private/shc98",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"private",
+										"shc98"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Update",
+					"item": [
+						{
+							"name": "17.Update_user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "id",
+											"value": "100",
+											"description": "can't edit",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "test@gmail.com",
+											"description": "Optional",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "phone",
+											"value": "01234567895",
+											"description": "Optional",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "type",
+											"value": "3",
+											"description": "Optional",
+											"type": "text"
+										},
+										{
+											"key": "first_name",
+											"value": "ahmed",
+											"description": "Optional MUST WITH LAST_NAME",
+											"type": "text"
+										},
+										{
+											"key": "last_name",
+											"value": "aasdas32",
+											"description": "Optional MUST WITH FIRST_NAME",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseURL}}/api/98/update_user",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"98",
+										"update_user"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "18.Update_student",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "Student_id",
+											"value": "200",
+											"type": "text"
+										},
+										{
+											"key": "roadmap",
+											"value": "2",
+											"description": "Optional",
+											"type": "text"
+										},
+										{
+											"key": "adv_id",
+											"value": "50012",
+											"description": "Optional",
+											"type": "text"
+										},
+										{
+											"key": "dep_id",
+											"value": "1",
+											"description": "Optional [ MUST WITH SEC_ID ] ",
+											"type": "text"
+										},
+										{
+											"key": "sec_id",
+											"value": "2",
+											"description": "Optional [ MUST WITH DEP_ID ] ",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseURL}}/api/98/update_student",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"98",
+										"update_student"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Delete Part",
+					"item": [
+						{
+							"name": "19.Delete User",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "id",
+											"value": "2021",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseURL}}/api/98/del_user",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"98",
+										"del_user"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "20.Delete Department",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "dep_id",
+											"value": "3",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseURL}}/api/private/del_dep98",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"private",
+										"del_dep98"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "21.Delete Section",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "sec_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "dep_id",
+											"value": "5",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseURL}}/api/private/del_sec98",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"private",
+										"del_sec98"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "22.Delete Course",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "ccode",
+											"value": "comp401",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseURL}}/api/private/del_Course",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"private",
+										"del_Course"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "23.Delete Pre_request",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "ccode",
+											"value": "comp403",
+											"type": "text"
+										},
+										{
+											"key": "pr_ccode",
+											"value": "comp405",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseURL}}/api/private/del_pr98",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"private",
+										"del_pr98"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "24.Delete SHC",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "dep_id",
+											"value": "comp401",
+											"type": "text"
+										},
+										{
+											"key": "Sec_id",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "ccode",
+											"value": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseURL}}/api/private/del_shc98",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"private",
+										"del_shc98"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "SERVICES",
+			"item": [
+				{
+					"name": "CHAT",
+					"item": [
+						{
+							"name": "25.Load_all_msg",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{baseURL}}/api/chat/messages",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"chat",
+										"messages"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "26.Send_msg",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "message",
+											"value": "لا إله إلا الله >>> محمد رسول الله صل الله على النبى ",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseURL}}/api/chat/messages",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"chat",
+										"messages"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "27.List_departments",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/service/list_departemnts",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"service",
+								"list_departemnts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "28.List_feedbacks",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/service/list_feedbacks",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"service",
+								"list_feedbacks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "29.List_Courses",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "dep_id",
+									"value": "1",
+									"description": "MUST ! ",
+									"type": "text"
+								},
+								{
+									"key": "sec_id",
+									"value": "2",
+									"description": "Optional",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "c_semester",
+									"value": "2",
+									"description": "Optional",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "c_lvl",
+									"value": "4",
+									"description": "Optional",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/service/list_c",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"service",
+								"list_c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "30.Enroll_Course",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "ccode",
+									"value": "comp106",
+									"type": "text"
+								},
+								{
+									"key": "force",
+									"value": "",
+									"description": "To FORCE ENROLL ==> 1 ",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/service/enroll_course",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"service",
+								"enroll_course"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "31.Cancel Course",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "ccode",
+									"value": "comp106",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/service/cancel_course",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"service",
+								"cancel_course"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "32.byan_nga7",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "msg",
+									"value": "sgpa",
+									"description": "MUST [sgpa || cgpa]",
+									"type": "text"
+								},
+								{
+									"key": "Student_id",
+									"value": "200",
+									"description": "OPTIONAL [ AUTH AND NOT ]  ",
+									"type": "text"
+								},
+								{
+									"key": "year",
+									"value": "2000",
+									"description": "OPTIONAL , MUST WITH [ sgpa ] ",
+									"type": "text"
+								},
+								{
+									"key": "semester",
+									"value": "3",
+									"description": "OPTIONAL , MUST WITH [ sgpa ] ",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/service/byan_nga7",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"service",
+								"byan_nga7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "33.BYAN_NGA& NEW EDITS",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Student_id",
+									"value": "1000",
+									"description": "OPTIONAL [ AUTH AND NOT ]  ",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/service/Student_Records",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"service",
+								"Student_Records"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "34.current_courses",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Student_id",
+									"value": "200",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/service/current_courses",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"service",
+								"current_courses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "35.intell_advise",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Student_id",
+									"value": "200",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/service/intell_advise",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"service",
+								"intell_advise"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "36.Enter_Degree",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "hmedterm_d",
+									"value": "5",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "hlab_d",
+									"value": "0",
+									"description": "Optional",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "horal_d",
+									"value": "8",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "hfinal_d",
+									"value": "90",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "ccode",
+									"value": "comp106",
+									"description": "MUST",
+									"type": "text"
+								},
+								{
+									"key": "Student_id",
+									"value": "200",
+									"description": "MUST",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/private/enter_degree",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"private",
+								"enter_degree"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "37.Add Attend",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "token",
+									"value": "123456",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/service/attends",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"service",
+								"attends"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Advisor",
+			"item": [
+				{
+					"name": "38.Signature",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Student_id",
+									"value": "200",
+									"type": "text"
+								},
+								{
+									"key": "ccode",
+									"value": "comp2861841",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/advisor/signature",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"advisor",
+								"signature"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "39.Add Feedback",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "ccode",
+									"value": "comp415",
+									"type": "text"
+								},
+								{
+									"key": "fheader",
+									"value": "ازاى اقدر اجيب تقدير فى الكورس ده ",
+									"type": "text"
+								},
+								{
+									"key": "fbody",
+									"value": "حاول تقفل اعمال السنة و تذاكر ++c",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/advisor/feedback98",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"advisor",
+								"feedback98"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "40.delete feedback",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "fid",
+									"value": "141",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/advisor/del_feedback98",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"advisor",
+								"del_feedback98"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "41.Session",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "value",
+									"value": "1",
+									"description": "0 || 1 ",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "2005",
+									"type": "text"
+								},
+								{
+									"key": "ccode",
+									"value": "COMP106",
+									"type": "text"
+								},
+								{
+									"key": "is_lec",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/advisor/Layer_f",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"advisor",
+								"Layer_f"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Testing...",
+			"item": [
+				{
+					"name": "7.Logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/api/auth/logout",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "8.Refresh_Data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/service/refresh_f",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"service",
+								"refresh_f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "9.Test_database",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "value",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/auth/list_database",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"list_database"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "10.Auto_Enroll",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "value",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/service/auto_enroll",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"service",
+								"auto_enroll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "11.Auto_Cancel",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "value",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/service/auto_cancel",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"service",
+								"auto_cancel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "test",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "value",
+									"value": "12345678",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/testing/test",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"testing",
+								"test"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": ""
+		},
+		{
+			"key": "equipmentId",
+			"value": ""
+		}
+	]
+}
